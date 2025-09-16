@@ -8,7 +8,9 @@ const useFetchEvents = () => {
 
   const fetchEvents = () => {
     setLoading(true);
-    fetch("http://localhost:3000/events")
+    // Use relative path that works both in development and production
+    const baseUrl = import.meta.env.BASE_URL || '/';
+    fetch(`${baseUrl}events.json`)
       .then((response) => {
         if (!response.ok) {
           throw new Error("Failed to fetch events");
@@ -16,7 +18,8 @@ const useFetchEvents = () => {
         return response.json();
       })
       .then((data) => {
-        setEvents(data);
+        // The JSON file has events nested under "events" property
+        setEvents(data.events || []);
         setError(null); // Clear any previous errors
       })
       .catch((error) => {
