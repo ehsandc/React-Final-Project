@@ -6,6 +6,7 @@ import { DataProvider } from "./context/DataContext.jsx";
 import App from "./pages/App";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
+ <HashRouter>
   <React.StrictMode>
     <BrowserRouter>
       <ChakraProvider>
@@ -15,4 +16,6 @@ ReactDOM.createRoot(document.getElementById("root")).render(
       </ChakraProvider>
     </BrowserRouter>
   </React.StrictMode>
+</HashRouter>
+  
 );
